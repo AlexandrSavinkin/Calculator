@@ -1,73 +1,91 @@
-import java.util.Arrays;
+package Calculator.Calculater.src;
+
+
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
 
 
-    public static void main(String[] args) {
+    static int num1;
+    static int num2;
+    static String operation;
+    static int result = 0;
+    static Roman roman = new Roman();
+    static Arab arab = new Arab();
 
 
-        int res = 0;
+    public static void main(String[] args) throws IllegalArgumentException {
         System.out.println("_____________________<<Введите арифметическую операцию!!!>>________________________");
-        System.out.println(calc(String.valueOf(res)));
+        Scanner scanner = new Scanner(System.in);
+        String in = scanner.nextLine();
+        System.out.println(calc(in));
 
     }
-    public static String calc(String input) {
-        String[] arab = {"10", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        String[] rome = {"X", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-        input = scanner.nextLine();
-        for (String s : rome) {
-            if (input.equals(s)) {
-                return String.valueOf(RomanNums.toArabic(s));
-            } else
-                System.out.println("no");
+
+
+    public static String calc(String input) throws IllegalArgumentException {
+
+        String[] lengthInput = input.split(" ");
+        if (lengthInput.length != 3) {
+            throw new IllegalArgumentException("Должно быть два операнда и один оператор");
         }
-
-        for (String s : arab) {
-            if (input.equals(s)) {
-                return RomanNums.toRoman(Integer.parseInt(s));
-            } else
-                System.out.println("n1");
-        }
-
-        String[] lengthInput = input.split("");
-
-        String num1, num2, operation;
-
-        num1 = lengthInput[0];
+        String str0 = lengthInput[0];
         operation = lengthInput[1];
-        num2 = lengthInput[2];
+        String str2 = lengthInput[2];
 
-        int result = 0;
 
-        if (lengthInput.length == 3) {
-            int a = Integer.parseInt(num1);
-            int b = Integer.parseInt(num2);
-            switch (operation) {
-                case "*" -> result = a * b;
-                case "/" -> result = a / b;
-                case "+" -> result = a + b;
-                case "-" -> result = a - b;
-                default -> System.out.println("ERROR");
-            }
+        num1 = arab.convertToArab(str0);
+        num2 = arab.convertToArab(str2);
 
+        while ((num1 >= 1 && num2 >= 1) & (num1 <= 10 && num2 <= 10)) {
+            result = calculation(num1, num2, operation);
+            return roman.convertToRoman(result);
+        }
+
+
+
+        num1 = parseInt(str0);
+        num2 = parseInt(str2);
+        if ((num1 >= 1 && num2 >= 1) & (num1 <= 10 && num2 <= 10)) {
+            result = calculation(num1, num2, operation);
+            return String.valueOf(result);
         } else
-            try {
-                throw new ArrayIndexOutOfBoundsException();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Три элемента должно быть!!!!");
-
-            }
-
-
-        return String.valueOf(result);
-
-
+            throw new NullPointerException("Вводимое число должно быть от 1 и до 10");
     }
 
 
+    public static int calculation(int a, int b, String operation) {
+        int result = 0;
+        if (operation.equals("+")) {
+            result = a + b;
+
+        } else if (operation.equals("-")) {
+            result = a - b;
+        } else if (operation.equals("*")) {
+            result = a * b;
+        } else if (operation.equals("/")) {
+            result = a / b;
+        } else
+            throw new IllegalArgumentException("щжожо");
+
+        return result;
+    }
 }
 
+//if ((!operation.equals("*")) || (!operation.equals("/")) || (!operation.equals("+")) || (!operation.equals("-"))) {
+//        throw new IllegalArgumentException("Введите правильный оператор [+ - * /]");
+//        }
+//
+
+
+//        switch (operation) {
+//            case "*" -> result = a * b;
+//            case "/" -> result = a / b;
+//            case "+" -> result = a + b;
+//            case "-" -> result = a - b;
+//
+//        }
 
 
