@@ -1,6 +1,6 @@
 package Calculator.Calculater.src;
 
- class Arab {
+ public class Arab {
      public  int convertToArab(String roman) {
          return switch (roman) {
              case "I" -> 1;

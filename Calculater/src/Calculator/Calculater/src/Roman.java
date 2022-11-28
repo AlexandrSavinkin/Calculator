@@ -1,6 +1,6 @@
 package Calculator.Calculater.src;
 
- class Roman {
+  public class Roman {
      public String convertToRoman(int arabNums) {
          String[] romanNums = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
                  "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
@@ -14,7 +14,7 @@ package Calculator.Calculater.src;
          try {
              str = romanNums[arabNums];
          } catch (ArrayIndexOutOfBoundsException e) {
-             System.out.println("В римской системе нет отрицательных чисел");
+             System.out.println("Результат не может быть отрицательным,в римской системе нет отрицательных чисел");
          }
          return str;
      }
