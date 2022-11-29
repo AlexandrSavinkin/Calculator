@@ -6,15 +6,12 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Main {
-
-
     static int num1;
     static int num2;
     static String operation;
     static int result = 0;
     static Roman roman = new Roman();
     static Arab arab = new Arab();
-
 
     public static void main(String[] args) throws IllegalArgumentException {
 
